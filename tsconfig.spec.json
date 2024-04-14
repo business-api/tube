@@ -1,0 +1,20 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": ["node", "jest", "@types/jest"],
+    "composite": true
+  },
+  "include": [
+    "jest.config.ts",
+    "src/tests/**/*.test.ts",
+    "src/tests/**/*.spec.ts",
+    "src/tests/**/*.test.tsx",
+    "src/tests/**/*.spec.tsx",
+    "src/core/**/*.ts",
+    "src/core/**/*.tsx",
+    "src/utils/**/*.ts",
+    "src/utils/**/*.tsx",
+    "src/tests/mock.ts"
+  ],
+  "exclude": ["src/index.ts"]
+}

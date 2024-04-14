@@ -1,0 +1,14 @@
+# Add files here to ignore them from prettier formatting
+/dist
+/coverage
+/.helm
+/.idea
+/.github
+/build
+/public
+/reports
+/coverage
+/node_modules
+/webpack/cache
+/lib
+/node_modules

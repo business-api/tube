@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "esnext",
+    "types": ["node", "jest"],
+    "outDir": "lib",
+    "declaration": true,
+    "emitDeclarationOnly": false,
+    "declarationMap": true,
+    "declarationDir": "./lib",
+    "paths": {
+      "@core/interactions": ["src/core/interactions/index.ts"],
+      "@core/data": ["src/core/data/index.ts"],
+      "@utils": ["src/utils/index.ts"]
+    }
+  },
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ]
+}

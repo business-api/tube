@@ -1,0 +1,6 @@
+{
+  "cSpell.words": ["microfronts", "Pacord", "punary", "testid"],
+  "cSpell.language": "en,ru",
+  "prettier.prettierPath": "./node_modules/prettier",
+  "cSpell.enabled": true
+}
