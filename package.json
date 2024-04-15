@@ -10,7 +10,8 @@
     "test": "jest",
     "rm:prepare": "rm -rf ./lib",
     "publish:prepare": "npm run format && npm run lint && npm run rm:prepare && npm run build",
-    "publish:init": "npm run publish:prepare && npm publish && npm run version"
+    "publish:init": "npm run publish:prepare && npm publish && npm run version",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -43,6 +44,7 @@
     "eslint-plugin-simple-import-sort": "^12.1.0",
     "eslint-plugin-sort": "^3.0.1",
     "eslint-plugin-sort-class-members": "^1.20.0",
+    "husky": "^9.0.11",
     "jest": "^29.7.0",
     "prettier": "3.2.5",
     "ts-jest": "^29.1.2",
