@@ -37,8 +37,8 @@ type MonoFunctionTube = {
     >,
   >(
     fn: RenoUnaryFunction<Data, Return>,
-    model: Data,
-    keys: Keys,
+    model?: Data | Data[],
+    keys?: Keys,
   ): ReturnMono<Return, Data, Keys>;
 };
 
@@ -47,6 +47,9 @@ export const mono: MonoFunctionTube = (fn, model?, keys?) => {
   const hasKeys = keys ?? NULLABLE;
 
   if (hasModel !== NULLABLE) {
+    if (Array.isArray(model)) {
+      return fn(model);
+    }
     if ((hasKeys && hasProperties(model, keys)) !== NULLABLE) {
       return fn(model);
     }

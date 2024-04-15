@@ -44,6 +44,5 @@ export const fnMonoMock: FnMonoMock = (data?, option?) =>
         };
       }
     },
-    data?.monoMock ? data : undefined,
-    ['monoMock'],
+    data?.monoMock ? [data] : undefined,
   );
