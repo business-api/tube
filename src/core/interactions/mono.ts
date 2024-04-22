@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import { NULLABLE, type Nullable } from '../../utils';
+import { first, NULLABLE } from '../../utils';
 import {
   type AsyncMonoFunction,
   type AsyncUnaryFunction,
@@ -8,15 +8,11 @@ import {
   type RenoUnaryFunction,
   type UnaryFunction,
 } from '../data';
+import { should } from './operators';
 import { punary, unary } from './unary';
 
-const hasProperties = (model, keys: []): boolean | Nullable =>
-  keys &&
-  keys.length > 0 &&
-  model &&
-  keys.every(key => (model[key] ?? NULLABLE) !== NULLABLE)
-    ? true
-    : NULLABLE;
+const hasProperties = (model, keys: []): boolean =>
+  !!(keys && keys.length > 0 && model && keys.every(key => should(key, model)));
 
 type ReturnMono<Return, T, Keys> = Return extends T
   ? MonoFunction<T>
@@ -48,9 +44,10 @@ export const mono: MonoFunctionTube = (fn, model?, keys?) => {
 
   if (hasModel !== NULLABLE) {
     if (Array.isArray(model)) {
-      return fn(model);
+      return fn(first(model));
     }
-    if ((hasKeys && hasProperties(model, keys)) !== NULLABLE) {
+
+    if (hasKeys && hasProperties(model, keys)) {
       return fn(model);
     }
 
@@ -82,4 +79,29 @@ export const prom: PromFunctionTube = (fn, model?, keys?): any => {
 
     return data !== undefined ? await func(model) : punary(func);
   })(fn, model, keys);
+};
+
+/**
+ * Returns an array containing the input data if the specified property exists and is not undefined,
+ * otherwise returns undefined. If the property is an array, checks if the input data has all the
+ * specified properties.
+ *
+ * @param {Data} data - The input data.
+ * @param {keyof Required<NonNullable<Data>> | Array<keyof Required<NonNullable<Data>>>} property -
+ * The property to check.
+ * @return {([Data] | undefined)} An array containing the input data if the property exists and is not
+ * undefined, otherwise undefined.
+ */
+export const prepare = <Data>(
+  data: Data,
+  property: keyof Required<NonNullable<Data>> | Array<keyof Required<NonNullable<Data>>>,
+): [Data] | undefined => {
+  const isArr = Array.isArray(property);
+  return isArr
+    ? hasProperties(data, property as [])
+      ? [data]
+      : undefined
+    : data && should(property, data)
+      ? [data]
+      : undefined;
 };

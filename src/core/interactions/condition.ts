@@ -1,3 +1,4 @@
+import { NULLABLE } from '../../utils';
 import { type AsyncConditionFunction, type ConditionFunction } from '../data';
 
 type ConditionFunctionTube = {
@@ -7,8 +8,5 @@ type ConditionFunctionTube = {
   <Data>(predicate: (param?: Data) => Promise<boolean>, model: Data): Promise<Data>;
 };
 
-export const condition: ConditionFunctionTube = (predicate?, model?) => {
-  const data = model ?? undefined;
-
-  return data !== undefined ? predicate(model) : value => predicate(value);
-};
+export const condition: ConditionFunctionTube = (predicate?, model?) =>
+  (model ?? NULLABLE) !== NULLABLE ? predicate(model) : value => predicate(value);

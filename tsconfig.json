@@ -28,5 +28,7 @@
     {
       "path": "./tsconfig.spec.json"
     }
-  ]
+  ],
+  "exclude": [],
+  "include": []
 }

@@ -1,8 +1,9 @@
 {
-  "name": "@tube/core",
+  "name": "@business-api/tube",
   "version": "1.0.1",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "private": false,
   "scripts": {
     "format": "prettier \"**/*.{js,ts,html,scss}\" --write -c",
     "lint": "eslint ./src --ext .ts --fix --cache --cache-location '.cache/.eslintcache'",
@@ -10,7 +11,7 @@
     "test": "jest",
     "rm:prepare": "rm -rf ./lib",
     "publish:prepare": "npm run format && npm run lint && npm run rm:prepare && npm run build",
-    "publish:init": "npm run publish:prepare && npm publish && npm run version",
+    "publish:init": "npm run publish:prepare && npm publish --access=public",
     "prepare": "husky"
   },
   "repository": {

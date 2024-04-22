@@ -1,5 +1,5 @@
-import { type ReturnCondition } from '../../core/data';
-import { condition } from '../../core/interactions';
+import { type ReturnCondition } from '../../data';
+import { condition } from '..';
 
 const isExistProp = (prop: unknown): boolean => {
   prop = typeof prop === 'boolean' ? true : prop;
